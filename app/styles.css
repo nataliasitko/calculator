@@ -2,6 +2,20 @@ body{
     background-color:whitesmoke;
 }
 
+.footer {
+    margin: 15px;
+    position: fixed;
+    bottom: 0%;
+    font-family: din-round,sans-serif;
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: .8px;
+}
+
+ul{
+    list-style: none;
+}
+
 h2{
     margin: 35px;
     text-align: center;
@@ -11,7 +25,16 @@ h2{
     letter-spacing: .8px;
 }
 
-h5{
+legend{
+    margin: 35px;
+    text-align: center;
+    font-family: din-round,sans-serif;
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: .8px;
+}
+
+h1{
     text-align: center;
     font-family: din-round,sans-serif;
     font-size: 15px;
@@ -20,18 +43,18 @@ h5{
 }
 
 label{
+    width: 45%;
     text-align: right;
     font-family: din-round,sans-serif;
     font-size: 16px;
     font-weight: 500;
-    margin: 20px;
-    width: 44%;
-    display: block;
+    margin: 20px;  
     float:left;
     clear: left;  
 }
 
 input{
+    display: inline-block;
     text-align: left;
     margin: 10px; 
     padding: .75rem 1.2rem;
@@ -42,7 +65,9 @@ input{
 }
 
 .result{
-    text-align: center;
+    color: black;
+    display:flex;
+    justify-content: center;
     font-family: din-round,sans-serif;
     font-size: 18px;
     font-weight: 700;
@@ -50,7 +75,7 @@ input{
     margin: 20px;
 }
 
-ul{
+.messages{
     text-align: center;
     list-style: none;
     font-family: din-round,sans-serif;

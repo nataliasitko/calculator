@@ -1,20 +1,8 @@
-<!DOCTYPE HTML>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pl" lang "pl">
+<?php
+    include _ROOT_PATH.'/templates/top.php';
+?>
 
-<head>
-    <meta charset="utf-8" />
-    <title>Kalkulator kredytowy</title>
-    <style>
-    <?php include 'styles.css'; ?>
-    </style>
-</head>
-
-<body>
-
-    <h2>Kalkulator kredytowy</h2>
-    <h5>Podaj kwotę kredytu, oprocentowanie w skali roku oraz okres spłaty w miesiącach.</h5>
-
-    <form action="<?php print(_APP_URL);?>/app/calc.php" method="post">
+    <form class="container" action="<?php print(_APP_URL);?>/app/calc.php" method="post">
 
         <label for="id_loan_amount">Kwota kredytu: </label>
         <input id="id_loan_amount" type="text" name="loan_amount"
@@ -36,6 +24,7 @@
 
     </form>
 
+    <div class='messages'>
     <?php
         if (isset($messages)) {
             echo '<ul>';
@@ -46,14 +35,15 @@
         }
     ?>
 
-    <?php if (isset($monthly_payment)) {?>
+    <?php if (isset($result)) {?>
 
         <div class="result">
-            <?php echo 'Rata miesięczna: '.$monthly_payment.' zł'; ?>
+            <?php echo 'Rata miesięczna: '.$result.' zł'; ?>
         </div>
 
     <?php } ?>
+    </div>
 
-</body>
-
-</html>
+    <?php
+    include _ROOT_PATH.'/templates/bottom.php';
+    ?>
