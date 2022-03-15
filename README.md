@@ -1,1 +1,1 @@
-Zadania z następnych zajęć znajdują się w kolejnych gałęziach.
+Zadania z kolejnych zajęć znajdują się w róznych gałęziach.
