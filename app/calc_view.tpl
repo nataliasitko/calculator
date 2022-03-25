@@ -16,31 +16,28 @@
         <input id="id_num_of_months" type="text" name="num_of_months"
                value={$form['num_of_months']}>
         <br>
-        <div class="buttonHolder">
-            <input class="button" type="submit" value="Oblicz miesięczną ratę kredytu">
-        </div>
+
+        <input class="button" type="submit" value="Oblicz miesięczną ratę kredytu">
+
+
 {/block}
 
-{block name=results}
-
-    <div class='messages'>
+{block name=messages}
 
         {if isset($messages)}
             <ul>
             {foreach $messages as $msg}
-                <li>{literal}{&msg}{/literal}</li>
+                <li>{$msg}</li>
             {/foreach}
             </ul>
         {/if}
+{/block}
+
+{block name= results}
 
         {if isset($result)}
-            <h4>Rata miesięczna: </h4>
-            <p class="res">
-                {$result}
-            </p>
+            <h2>Rata miesięczna: {$result} zł</h2>
         {/if}
-
-    </div>
 
 {/block}
 
