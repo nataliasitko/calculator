@@ -1,8 +1,8 @@
 <?php
 require_once dirname(__DIR__).'/config.php';
-require_once _ROOT_PATH.'lib/Smarty/Smarty.class.php';
+require_once _ROOT_PATH.'/lib/Smarty/Smarty.class.php';
 
-include _ROOT_PATH.'/app/security/check.php';
+//include _ROOT_PATH.'/app/security/check.php';
 
 function getParams(&$form){
 	$form['loan_amount'] = $_REQUEST['loan_amount'] ?? null;
@@ -10,7 +10,7 @@ function getParams(&$form){
 	$form['num_of_months'] = $_REQUEST['num_of_months'] ?? null;
 }
 
-function validate(&$form,&$infos,&$msgs,&$hide_intro): bool
+function validate($form, &$infos, &$messages, &$hide_intro): bool
 {
 
 	if ( ! (isset($form['loan_amount']) && isset($form['interest_rate']) && isset($form['num_of_months']) ))	return false;
@@ -19,22 +19,22 @@ function validate(&$form,&$infos,&$msgs,&$hide_intro): bool
 
 	$infos [] = 'Przekazano parametry.';
 
-	if ( $form['loan_amount'] == "") $msgs [] = 'Nie podano liczby 1';
-	if ( $form['interest_rate'] == "") $msgs [] = 'Nie podano liczby 2';
-        if ( $form['num_of_months'] == "") $msgs [] = 'Nie podano liczby 3';
+	if ( $form['loan_amount'] == "") $messages [] = 'Nie podano kwoty kredytu!';
+	if ( $form['interest_rate'] == "") $messages [] = 'Nie podano wartości oprocentowania!';
+        if ( $form['num_of_months'] == "") $messages [] = 'Nie podano liczby miesięcy!';
 	
-	if ( count($msgs)==0 ) {
-		if (! is_numeric( $form['loan_amount'] )) $msgs [] = 'Pierwsza wartość nie jest liczbą';
-		if (! is_numeric( $form['interest_rate'] )) $msgs [] = 'Druga wartość nie jest liczbą';
-                if (! is_numeric( $form['num_of_months'] )) $msgs [] = 'Trzecia wartość nie jest liczbą';
+	if ( count($messages)==0 ) {
+		if (! is_numeric( $form['loan_amount'] )) $messages [] = 'Pierwsza wartość nie jest liczbą!';
+		if (! is_numeric( $form['interest_rate'] )) $messages [] = 'Druga wartość nie jest liczbą!';
+                if (! is_numeric( $form['num_of_months'] )) $messages [] = 'Trzecia wartość nie jest liczbą!';
                 
         }
 	
-	if (count($msgs)>0) return false;
-	else return true;
+	if ($messages) return false;
+	return true;
 }
 	
-function process(&$form,&$infos,&$msgs,&$result){
+function process(&$form, &$infos, &$result){
 	$infos [] = 'Parametry poprawne. Wykonuję obliczenia.';
 	
 	$form['loan_amount'] = floatval($form['loan_amount']);
@@ -54,8 +54,9 @@ $result = null;
 $hide_intro = false;
 
 getParams($form);
+
 if ( validate($form,$infos,$messages,$hide_intro) ){
-    process($form,$infos,$messages,$result);
+    process($form,$infos,$result);
 }
 
 $smarty = new Smarty();
@@ -73,4 +74,8 @@ $smarty->assign('result',$result);
 $smarty->assign('messages',$messages);
 $smarty->assign('infos',$infos);
 
-$smarty->display(_ROOT_PATH.'/app/calc_view.tpl');
+try {
+    $smarty->display(_ROOT_PATH . '/app/calc_view.tpl');
+} catch (SmartyException $e) {
+    $messages [] = "Unable to display the calc view. Exception: ".$e;
+}
