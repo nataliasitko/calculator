@@ -1,6 +1,8 @@
-{extends file="../templates/main.tpl"}
+{extends file="../../templates/main.tpl"}
 
 {block name=form}
+
+    <form class="container" action="{$conf->action_root}calcCompute" method="post">
 
         <label for="id_loan_amount">Kwota kredytu: </label>
         <input id="id_loan_amount" type="text" name="loan_amount"
@@ -19,6 +21,7 @@
 
         <input class="button" type="submit" value="Oblicz miesięczną ratę kredytu">
 
+    </form>
 
 {/block}
 

@@ -26,11 +26,8 @@
                     <h2>{$page_description}</h2>
                 </header>
 
-            <form class="container" action="{$app_url}/app/calc.php" method="post">
-
             {block name=form} Domyślna treść zawartości... {/block}
 
-            </form>
             </section>
 
             <div class="messages">

@@ -1,9 +1,11 @@
 <?php
 
-require_once $conf-> root_path.'lib/smarty/Smarty.class.php';
-require_once $conf -> root_path.'lib/Messages.class.php';
-require_once $conf ->root_path.'/app/CalcForm.php';
-require_once $conf -> root_path.'app/CalcResult.class.php';
+use JetBrains\PhpStorm\Pure;
+
+require_once $conf -> root_path.'\lib\smarty\Smarty.class.php';
+require_once $conf -> root_path.'\lib\Messages.class.php';
+require_once $conf -> root_path. '/\app\calc\CalcForm.class.php';
+require_once $conf -> root_path.'\app\calc\CalcResult.class.php';
 
 class CalcCtrl
 {
@@ -23,7 +25,7 @@ class CalcCtrl
         $this -> form -> num_of_months = $_REQUEST['num_of_months'] ?? null;
     }
 
-    function validate($form, &$infos, &$messages, &$hide_intro): bool
+    function validate(): bool
     {
 
         if ( ! ($this -> form -> loan_amount) && isset($this -> form -> interest_rate) && isset($this -> form -> num_of_months))
@@ -40,7 +42,7 @@ class CalcCtrl
         if ($this -> form -> num_of_months = "")
             $this -> form -> num_of_months -> addError('Nie podano liczby miesięcy!');
 
-        if ($this -> message -> isError()) {
+        if ($this -> messages -> isError()) {
             if (! is_numeric($this -> form -> loan_amount))
                 $this -> messages -> addError('Pierwsza wartość nie jest liczbą!');
             if (! is_numeric($this -> form -> interest_rate))
@@ -94,7 +96,7 @@ class CalcCtrl
         $smarty->assign('result',$this -> result);
         $smarty->assign('messages',$this -> messages);
 
-        $smarty ->display($conf->root_path.'/app/calc_view.tlp');
+        $smarty ->display($conf->root_path.'\app\calc\calc_view.tpl');
 
     }
 }
