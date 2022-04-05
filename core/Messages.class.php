@@ -1,5 +1,7 @@
 <?php
 
+namespace core;
+
 class Messages
 {
     private $errors = array();
@@ -16,9 +18,9 @@ class Messages
         $this -> num++;
     }
 
-    public function isEmpty(){
-        $this -> infos[] = $message;
-        $this -> num++;
+    public function isEmpty(): bool
+    {
+        return $this -> num == 0;
     }
 
     public function isError(): bool

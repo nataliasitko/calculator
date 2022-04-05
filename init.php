@@ -1,20 +1,22 @@
 <?php
-require_once dirname(__FILE__).'/core/Config.class.php';
-$conf = new Config();
-include dirname(__FILE__).'/config.php';
 
-function &getConf(): Config
+require_once 'core/Config.class.php';
+$conf = new core\Config();
+include 'config.php';
+
+function &getConf(): \core\Config
 { global $conf; return $conf; }
 
 
-require_once getConf()->root_path.'/core/Messages.class.php';
-$msgs = new Messages();
+require_once 'core/Messages.class.php';
+$msgs = new core\Messages();
 
-function &getMessages(): Messages
+function &getMessages(): core\Messages
 { global $msgs; return $msgs; }
 
 $smarty = null;
-function &getSmarty(){
+function &getSmarty(): ?Smarty
+{
     global $smarty;
     if (!isset($smarty)){
 
@@ -32,7 +34,14 @@ function &getSmarty(){
     return $smarty;
 }
 
-require_once getConf()->root_path.'/core/functions.php';
+require_once 'core/ClassLoader.class.php';
+$cloader = new core\ClassLoader();
+function &getLoader() {
+    global $cloader;
+    return $cloader;
+}
+
+require_once 'core/functions.php';
 
 $action = getFromRequest('action');
 

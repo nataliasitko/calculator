@@ -1,5 +1,7 @@
 <?php
 
+namespace app\forms;
+
 class CalcForm
 {
     public $loan_amount;

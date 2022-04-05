@@ -1,7 +1,9 @@
 <?php
 
-require_once 'CalcForm.class.php';
-require_once 'CalcResult.class.php';
+namespace app\controllers;
+
+use app\forms\CalcForm;
+use app\transfer\CalcResult;
 
 class CalcCtrl
 {
@@ -79,7 +81,7 @@ class CalcCtrl
         getSmarty()->assign('page_header','Kalkulator kredytowy');
         getSmarty()->assign('page_footer','Projekt kalkulatora kredytowego');
 
-        getSmarty()->assign('form',$this->form);
+        getSmarty()->assign('forms',$this->form);
         getSmarty()->assign('res',$this -> result);
 
         getSmarty()->display('CalcView.tpl');
