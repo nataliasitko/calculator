@@ -1,4 +1,4 @@
-{extends file="../../templates/main.tpl"}
+{extends file="main.tpl"}
 
 {block name=form}
 
@@ -27,9 +27,9 @@
 
 {block name=messages}
 
-        {if $messages-> isError()}
+        {if $msgs-> isError()}
             <ul>
-            {foreach $messages->getErrors() as $msg}
+            {foreach $msgs->getErrors() as $msg}
                 <li>{$msg}</li>
             {/foreach}
             </ul>
@@ -38,8 +38,8 @@
 
 {block name= results}
 
-        {if $result->result}
-            <h2>Rata miesięczna: {$result->result} zł</h2>
+        {if $res->result}
+            <h2>Rata miesięczna: {$res->result} zł</h2>
         {/if}
 
 {/block}
