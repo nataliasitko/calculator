@@ -18,31 +18,16 @@
             <span class="logo"><img src="{$conf->app_url}/styles/images/coin.svg" alt="" /></span>
             <h1>{$page_header|default:"Tytuł domyślny"}</h1>
         </header>
-
         <div id="main">
-
             <section id="first" class="main special">
-                <header class="major">
-                    <h2>{$page_description}</h2>
-                </header>
-
-            {block name=form} Domyślna treść zawartości... {/block}
-
+                {block name="content"}
+                    Zawartość domyślna...
+                {/block}
             </section>
-
-            <div class="messages">
-                {block name=messages}Odpowiedź domyślna...{/block}
-            </div>
-
-            <div class="results">
-
-                {block name=results}Odpowiedź domyślna...{/block}
-            </div>
-
         </div>
-
-        {block name=footer}Domyślna zawartość stopki ... {/block}
-
+        <footer id="footer">
+            <p class="copyright">&copy; Untitled. Design based on: <a href="https://html5up.net">HTML5 UP</a>.<br>Natalia Sitko</p>
+        </footer>
     </div>
 
 <!-- Scripts -->

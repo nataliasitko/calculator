@@ -75,13 +75,15 @@ class CalcCtrl
 
     public function generateView(){
 
+        getSmarty()->assign('user',unserialize($_SESSION['user']));
+
         getSmarty()->assign('page_title','Kalkulator');
         getSmarty()->assign('page_description','Podaj kwotę kredytu, oprocentowanie w skali roku 
                 oraz okres spłaty liczony w miesiącach:');
-        getSmarty()->assign('page_header','Kalkulator kredytowy');
+
         getSmarty()->assign('page_footer','Projekt kalkulatora kredytowego');
 
-        getSmarty()->assign('forms',$this->form);
+        getSmarty()->assign('form',$this->form);
         getSmarty()->assign('res',$this -> result);
 
         getSmarty()->display('CalcView.tpl');

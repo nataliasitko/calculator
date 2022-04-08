@@ -11,5 +11,7 @@ class Config
     public $app_url;
     public $action_root;
     public $action_url;
+    public $login_action;
+    public $roles;
 }
 ?>

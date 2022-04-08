@@ -2,16 +2,15 @@
 
 require_once 'init.php';
 
-$action = $_REQUEST['action'] ?? null;
+getRouter()->setDefaultRoute('calcShow');
+getRouter()->setLoginRoute('login');
 
-switch ($action) {
-    default :
-        $ctrl = new app\controllers\CalcCtrl();
-        $ctrl->generateView();
-        break;
-    case 'calcCompute' :
-        $ctrl = new app\controllers\CalcCtrl();
-        $ctrl->process();
-        break;
+getRouter()->addRoute('calcShow',    'CalcCtrl',  ['user','admin']);
+getRouter()->addRoute('calcCompute', 'CalcCtrl',  ['user','admin']);
+getRouter()->addRoute('login',       'LoginCtrl');
+getRouter()->addRoute('logout',      'LoginCtrl', ['user','admin']);
+
+try {
+    getRouter()->go();
+} catch (Exception $e) {
 }
-
