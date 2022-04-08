@@ -2,15 +2,12 @@
 
 require_once 'init.php';
 
-getRouter()->setDefaultRoute('calcShow');
 getRouter()->setLoginRoute('login');
+getRouter()->setDefaultRoute('calcShow');
 
 getRouter()->addRoute('calcShow',    'CalcCtrl',  ['user','admin']);
 getRouter()->addRoute('calcCompute', 'CalcCtrl',  ['user','admin']);
 getRouter()->addRoute('login',       'LoginCtrl');
 getRouter()->addRoute('logout',      'LoginCtrl', ['user','admin']);
 
-try {
-    getRouter()->go();
-} catch (Exception $e) {
-}
+getRouter()->go();

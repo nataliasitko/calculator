@@ -35,8 +35,10 @@ class Router {
         $this->login = $route;
     }
 
+    /**
+     * @throws Exception
+     */
     private function control($namespace, $controller, $method, $roles = null) {
-        //TODO tu gdziejś jest bład
         if (!empty($roles)) {
             $found = false;
             if (is_array($roles)) {

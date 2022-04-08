@@ -51,7 +51,7 @@ class CalcCtrl
         return ! getMessages()-> isError();
     }
 
-    public function process(){
+    public function action_calcCompute(){
 
         $this->getparams();
 
@@ -69,7 +69,11 @@ class CalcCtrl
 
             getMessages()->addInfo('Wykonano obliczenia.');
         }
+        $this->generateView();
+    }
 
+    public function action_calcShow(){
+        getMessages()->addInfo('Witaj w kalkulatorze');
         $this->generateView();
     }
 
@@ -78,6 +82,7 @@ class CalcCtrl
         getSmarty()->assign('user',unserialize($_SESSION['user']));
 
         getSmarty()->assign('page_title','Kalkulator');
+        getSmarty()->assign('page_header','Kalkulator kredytowy');
         getSmarty()->assign('page_description','Podaj kwotę kredytu, oprocentowanie w skali roku 
                 oraz okres spłaty liczony w miesiącach:');
 

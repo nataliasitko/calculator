@@ -1,36 +1,36 @@
 {extends file="main.tpl"}
     {block name="content"}
+        <header class="major">
+            <h2>{$page_description}</h2>
+        </header>
+            <form class="container" action="{$conf->action_root}calcCompute" method="post">
 
-                <header class="major">
-                    <h2>{$page_description}</h2>
-                </header>
+                <label for="id_loan_amount">Kwota kredytu: </label>
+                <input id="id_loan_amount" type="text" name="loan_amount"
+                       value={$form->loan_amount}>
+                <br>
 
-                <form class="container" action="{$conf->action_root}calcCompute" method="post">
+                <label for="id_interest_rate">Oprocentowanie: </label>
+                <input id="id_interest_rate" type="text" name="interest_rate"
+                       value={$form->interest_rate}>
+                <br>
 
-                    <label for="id_loan_amount">Kwota kredytu: </label>
-                    <input id="id_loan_amount" type="text" name="loan_amount"
-                           value={$form->loan_amount}>
-                    <br>
+                <label for="id_num_of_months">Okres spłaty: </label>
+                <input id="id_num_of_months" type="text" name="num_of_months"
+                       value={$form->num_of_months}>
+                <br>
 
-                    <label for="id_interest_rate">Oprocentowanie: </label>
-                    <input id="id_interest_rate" type="text" name="interest_rate"
-                           value={$form->interest_rate}>
-                    <br>
+                <input class="button" type="submit" value="Oblicz miesięczną ratę kredytu">
 
-                    <label for="id_num_of_months">Okres spłaty: </label>
-                    <input id="id_num_of_months" type="text" name="num_of_months"
-                           value={$form->num_of_months}>
-                    <br>
+            </form>
 
-                    <input class="button" type="submit" value="Oblicz miesięczną ratę kredytu">
+        {include file='messages.tpl'}
 
-                </form>
-
-            <div class="results">
-                {if $res->result}
-                    <h3>Rata miesięczna: {$res->result}</h3>
-                {/if}
-            </div>
+        <div class="results">
+            {if $res->result}
+                <h3>Rata miesięczna: {$res->result}</h3>
+            {/if}
+        </div>
 
     {/block}
 
