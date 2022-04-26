@@ -13,5 +13,13 @@ class Config
     public $action_url;
     public $login_action;
     public $roles;
+    public $db_type;
+    public $db_server;
+    public $db_name;
+    public $db_user;
+    public $db_pass;
+    public $db_charset;
+    public $db_port;
+    public $db_option;
 }
 ?>

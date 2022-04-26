@@ -2,8 +2,11 @@
 
 namespace app\controllers;
 
+
 use app\forms\CalcForm;
 use app\transfer\CalcResult;
+use Medoo\Medoo;
+use PDOException;
 
 class CalcCtrl
 {
@@ -68,8 +71,22 @@ class CalcCtrl
             $this->result->result = round($this->result->result,2);
 
             getMessages()->addInfo('Wykonano obliczenia.');
+
         }
+
         $this->generateView();
+    }
+
+    public function saveToDatabase($db){
+        try{
+            $db->insert("results", [
+                "loan_amout" => $this->form->loan_amount,
+                "interest_rate" => $this->form->interest_rate,
+                "num_of_months" => $this->form->num_of_months,
+            ]);
+        }catch(PDOException $ex){
+            getMessages()->addError("Connection failed".$ex);
+        }
     }
 
     public function action_calcShow(){
